@@ -1,0 +1,5 @@
+.git
+target/*.original
+target/*.pom
+node_modules
+*.md
