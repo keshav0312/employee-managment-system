@@ -1,14 +1,13 @@
-# Use Java (JRE) 17 to run our Spring Boot app
+# 1) Build stage: uses Maven to build the project inside container
+FROM eclipse-temurin:17-jdk as build
+WORKDIR /app
+COPY . .
+RUN ./mvnw clean package -DskipTests
+
+# 2) Run stage: uses small JRE to run the built jar
 FROM eclipse-temurin:17-jre
-
-# Render gives a PORT, so we use it
+WORKDIR /app
 ENV PORT=8080
-
-# Expose that port from the container
 EXPOSE 8080
-
-# Copy the final .jar file from Maven build into container and rename it to app.jar
-COPY target/employee-management-system-0.0.1-SNAPSHOT.jar app.jar
-
-# Start the application
+COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "app.jar"]
