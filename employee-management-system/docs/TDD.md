@@ -54,3 +54,7 @@ This document explains how we tested the backend API.
 
 ## 4. Result
 All test cases performed and verified successfully.
+
+
+## 4. Images 
+- images are stored in images folder

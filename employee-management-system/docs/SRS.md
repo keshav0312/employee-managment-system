@@ -77,3 +77,5 @@ The frontend (React) communicates with this backend using REST API calls.
 - Add Login system
 - Add Employee search and filtering
 - Add pagination in list
+
+
